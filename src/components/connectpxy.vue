@@ -4,8 +4,6 @@
 <script setup>
 import { LarkSR } from "larksr_websdk";
 import {onMounted} from 'vue';
-import sendAssignMessage from "/src/tools/sendAssignMessage.js"
-import PxyCommonUI from 'pxy_webcommonui';
 
 const sdkid="51dfc5ae3eee4301b86a49515f9c3e92"
 const appid="1202276979286474752"
@@ -22,17 +20,14 @@ onMounted(()=>{
   larksr.connectWithPxyHost ({
     appliId: appid
   })
-  larksr.on('datachanneltext',(e)=>{
-    console.log(e.data)
-    emit("trigger",e.data)
+  larksr.on('datachannelopen',(e)=>{
+    setTimeout(()=>{
+      console.log(e.data)
+      emit("trigger",e.data)
+      },1200)
   })
   window.larksr=larksr
 })
 </script>
 <style scoped>
-#joystickdom{
-  position: absolute;
-  left: 3vw;
-  bottom: 40vh;
-}
 </style>

@@ -1,0 +1,561 @@
+{
+    "status": "ok",
+    "message": [
+        {
+            "ver": "0.0.0.0",
+            "fullCls": "SL_NATURE_V1",
+            "me": "0001",
+            "lHeart": 1706753364,
+            "stat": 1,
+            "data": {
+                "P7": {
+                    "icon": "",
+                    "val": 0,
+                    "type": 206,
+                    "valts": 1703569107838
+                },
+                "P10": {
+                    "icon": "",
+                    "val": 0,
+                    "type": 206,
+                    "valts": 1703569107838
+                },
+                "P4": {
+                    "icon": "",
+                    "val": 210,
+                    "type": 9,
+                    "valts": 1706753415715
+                },
+                "P5": {
+                    "icon": "",
+                    "val": 769,
+                    "type": 95,
+                    "valts": 1583064015510
+                },
+                "P8": {
+                    "icon": "",
+                    "val": 220,
+                    "type": 136,
+                    "valts": 1703569107838
+                },
+                "P2": {
+                    "icon": "NA",
+                    "val": 0,
+                    "type": 128,
+                    "valts": 1706520974446
+                },
+                "P3": {
+                    "icon": "NA",
+                    "val": 0,
+                    "type": 128,
+                    "valts": 1706520975094
+                },
+                "P6": {
+                    "icon": "",
+                    "val": 1536,
+                    "type": 254,
+                    "valts": 1703569107838
+                },
+                "P9": {
+                    "icon": "",
+                    "val": 0,
+                    "type": 206,
+                    "valts": 1703569107838
+                },
+                "P1": {
+                    "icon": "",
+                    "val": 1,
+                    "type": 129,
+                    "valts": 1706535496678
+                }
+            },
+            "agt": "AzUAADgbgwEAABcnNAz__w",
+            "devtype": "SL_NATURE",
+            "name": "Nature",
+            "agt_ver": "1.0.93p8"
+        },
+        {
+            "ver": "0.0.0.0",
+            "fullCls": "V_SI_V1",
+            "me": "0020",
+            "lHeart": 1408622409,
+            "stat": 1,
+            "data": {
+                "S_CON": {
+                    "type": 78,
+                    "valts": 1706520467914,
+                    "val": 2
+                },
+                "B": {
+                    "type": 0,
+                    "v": 0,
+                    "valts": 1408622415183,
+                    "val": 0
+                }
+            },
+            "agt": "AzIAADT4gQEAAAVUKAz__w",
+            "devtype": "V_SI",
+            "name": "0020",
+            "agt_ver": "1.0.92p87"
+        },
+        {
+            "ver": "0.1.14.13",
+            "fullCls": "SL_SW_IF2_V4",
+            "data": {
+                "dark2": {
+                    "type": 255,
+                    "valts": 1706520592172,
+                    "val": 14984
+                },
+                "bright2": {
+                    "type": 255,
+                    "valts": 1706520592172,
+                    "val": 9374208
+                },
+                "L2": {
+                    "val": 1,
+                    "type": 129,
+                    "v": 1,
+                    "valts": 1706672932871,
+                    "name": "金属二键 2"
+                },
+                "L1": {
+                    "val": 1,
+                    "type": 129,
+                    "v": 1,
+                    "valts": 1706672933658,
+                    "name": "金属二键 1"
+                },
+                "bright1": {
+                    "type": 255,
+                    "valts": 1706520592172,
+                    "val": 9374208
+                },
+                "dark1": {
+                    "type": 255,
+                    "valts": 1706520592172,
+                    "val": 14984
+                }
+            },
+            "me": "3c8e",
+            "devtype": "SL_SW_IF2",
+            "lHeart": 1706753722,
+            "stat": 1,
+            "agt": "AzIAADT4gQEAAAVUKAz__w",
+            "agt_ver": "1.0.92p87",
+            "name": "金属二键",
+            "lDbm": -23
+        },
+        {
+            "ver": "0.1.6.145",
+            "fullCls": "SL_LI_WW_V4",
+            "data": {
+                "P2": {
+                    "icon": "",
+                    "val": 255,
+                    "type": 207,
+                    "valts": 1706520833228
+                },
+                "P1": {
+                    "type": 206,
+                    "v": 33,
+                    "valts": 1706708844039,
+                    "val": 33
+                }
+            },
+            "me": "3c93",
+            "devtype": "SL_LI_WW",
+            "lHeart": 1706753512,
+            "stat": 1,
+            "agt": "AzIAADT4gQEAAAVUKAz__w",
+            "agt_ver": "1.0.92p87",
+            "name": "LED调光调色恒压驱动器",
+            "lDbm": -77
+        },
+        {
+            "ver": "0.1.6.25",
+            "fullCls": "SL_SC_BM_V1",
+            "data": {
+                "M": {
+                    "type": 0,
+                    "v": 0,
+                    "valts": 1706752924354,
+                    "val": 0
+                },
+                "Z": {
+                    "type": 95,
+                    "v": 442,
+                    "valts": 1706753740237,
+                    "val": 442
+                },
+                "V": {
+                    "type": 79,
+                    "v": 100,
+                    "valts": 1706733240666,
+                    "val": 157
+                }
+            },
+            "me": "3c97",
+            "devtype": "SL_SC_BM",
+            "lHeart": 1706753740,
+            "stat": 1,
+            "agt": "AzIAADT4gQEAAAVUKAz__w",
+            "agt_ver": "1.0.92p87",
+            "name": "多功能动态感应器",
+            "lDbm": -23
+        },
+        {
+            "ver": "0.1.6.7",
+            "fullCls": "SL_OE_W_V1",
+            "data": {
+                "P2": {
+                    "type": 3,
+                    "v": 3.4300426250411e-06,
+                    "valts": 1706534048056,
+                    "val": 912666543
+                },
+                "P1": {
+                    "type": 128,
+                    "v": 0,
+                    "valts": 1706669631119,
+                    "val": 0
+                },
+                "P4": {
+                    "type": 222,
+                    "v": 0,
+                    "valts": 1706520738960,
+                    "val": 0
+                },
+                "P3": {
+                    "type": 3,
+                    "v": 0,
+                    "valts": 1706520738960,
+                    "val": 0
+                },
+                "P6": {
+                    "type": 255,
+                    "valts": 1706520738628,
+                    "val": 3342336
+                },
+                "P5": {
+                    "type": 255,
+                    "valts": 1706520738628,
+                    "val": 51
+                }
+            },
+            "me": "3c91",
+            "devtype": "SL_OE_W",
+            "lHeart": 1706753451,
+            "stat": 1,
+            "agt": "AzIAADT4gQEAAAVUKAz__w",
+            "agt_ver": "1.0.92p87",
+            "name": "智慧插座(电量计量版)",
+            "lDbm": -26
+        },
+        {
+            "ver": "0.0.0.0",
+            "fullCls": "ZG#MIR-SM100-E",
+            "me": "3c94",
+            "zg_nodeid": 13791,
+            "zg_homeid": 34860,
+            "lHeart": 1706753421,
+            "stat": 1,
+            "data": {
+                "A1": {
+                    "type": 0,
+                    "valts": 1706520869573,
+                    "val": 0
+                },
+                "BAT1": {
+                    "type": 78,
+                    "valts": 1706739690193,
+                    "val": 100
+                },
+                "ALM1": {
+                    "type": 207,
+                    "valts": 1706520876157,
+                    "val": 48
+                },
+                "V1": {
+                    "type": 8,
+                    "valts": 1706520869573,
+                    "val": 33
+                }
+            },
+            "agt": "AzIAADT4gQEAAAVUKAz__w",
+            "devtype": "ZG#MIR-SM100-E",
+            "name": "光电感烟探测器(ZigBee)",
+            "agt_ver": "1.0.92p87"
+        },
+        {
+            "ver": "0.1.14.13",
+            "fullCls": "SL_SW_IF3_V4",
+            "data": {
+                "dark3": {
+                    "type": 255,
+                    "valts": 1706520606704,
+                    "val": 14984
+                },
+                "L2": {
+                    "val": 0,
+                    "type": 128,
+                    "v": 0,
+                    "valts": 1706671754664,
+                    "name": "金属三键 2"
+                },
+                "L3": {
+                    "val": 1,
+                    "type": 129,
+                    "v": 1,
+                    "valts": 1706688437183,
+                    "name": "金属三键 3"
+                },
+                "dark2": {
+                    "type": 255,
+                    "valts": 1706520606704,
+                    "val": 14984
+                },
+                "bright3": {
+                    "type": 255,
+                    "valts": 1706520606704,
+                    "val": 9374208
+                },
+                "bright2": {
+                    "type": 255,
+                    "valts": 1706520606704,
+                    "val": 9374208
+                },
+                "L1": {
+                    "val": 0,
+                    "type": 128,
+                    "v": 0,
+                    "valts": 1706671754479,
+                    "name": "金属三键 1"
+                },
+                "bright1": {
+                    "type": 255,
+                    "valts": 1706520606704,
+                    "val": 9374208
+                },
+                "dark1": {
+                    "type": 255,
+                    "valts": 1706520606704,
+                    "val": 14984
+                }
+            },
+            "me": "3c8f",
+            "devtype": "SL_SW_IF3",
+            "lHeart": 1706753582,
+            "stat": 1,
+            "agt": "AzIAADT4gQEAAAVUKAz__w",
+            "agt_ver": "1.0.92p87",
+            "name": "金属三键",
+            "lDbm": -32
+        },
+        {
+            "ver": "0.1.6.20",
+            "fullCls": "SL_SC_BE_V1",
+            "data": {
+                "T": {
+                    "type": 95,
+                    "v": 22,
+                    "valts": 1706753251559,
+                    "val": 220
+                },
+                "H": {
+                    "type": 95,
+                    "v": 49.8,
+                    "valts": 1706753301506,
+                    "val": 498
+                },
+                "Z": {
+                    "type": 95,
+                    "v": 574,
+                    "valts": 1706753301506,
+                    "val": 574
+                },
+                "V": {
+                    "type": 79,
+                    "v": 100,
+                    "valts": 1706718341969,
+                    "val": 158
+                }
+            },
+            "me": "3c96",
+            "devtype": "SL_SC_BE",
+            "lHeart": 1706753301,
+            "stat": 1,
+            "agt": "AzIAADT4gQEAAAVUKAz__w",
+            "agt_ver": "1.0.92p87",
+            "name": "多功能环境感应器",
+            "lDbm": -32
+        },
+        {
+            "ver": "0.1.6.37",
+            "fullCls": "SL_DOOYA_V1",
+            "data": {
+                "P2": {
+                    "type": 206,
+                    "valts": 1706520786941,
+                    "val": 128
+                },
+                "P1": {
+                    "icon": "",
+                    "val": 127,
+                    "type": 78,
+                    "valts": 1706520788585
+                }
+            },
+            "me": "3c92",
+            "devtype": "SL_DOOYA",
+            "lHeart": 1706753612,
+            "stat": 1,
+            "agt": "AzIAADT4gQEAAAVUKAz__w",
+            "agt_ver": "1.0.92p87",
+            "name": "窗帘电机",
+            "lDbm": -23
+        },
+        {
+            "ver": "0.1.14.9",
+            "fullCls": "SL_SW_NS3_V1",
+            "data": {
+                "dark3": {
+                    "type": 255,
+                    "valts": 1706520644272,
+                    "val": 23240
+                },
+                "L2": {
+                    "val": 0,
+                    "type": 128,
+                    "v": 0,
+                    "valts": 1706592565095,
+                    "name": "星玉/星雾开关 2"
+                },
+                "L3": {
+                    "val": 0,
+                    "type": 128,
+                    "v": 0,
+                    "valts": 1706671755330,
+                    "name": "星玉/星雾开关 3"
+                },
+                "dark2": {
+                    "type": 255,
+                    "valts": 1706520644272,
+                    "val": 23240
+                },
+                "bright3": {
+                    "type": 255,
+                    "valts": 1706520644272,
+                    "val": 16734720
+                },
+                "bright2": {
+                    "type": 255,
+                    "valts": 1706520644272,
+                    "val": 16734720
+                },
+                "L1": {
+                    "val": 0,
+                    "type": 128,
+                    "v": 0,
+                    "valts": 1706708843941,
+                    "name": "射灯"
+                },
+                "bright1": {
+                    "type": 255,
+                    "valts": 1706520644272,
+                    "val": 16734720
+                },
+                "dark1": {
+                    "type": 255,
+                    "valts": 1706520644272,
+                    "val": 23240
+                }
+            },
+            "me": "3c90",
+            "devtype": "SL_SW_NS3",
+            "lHeart": 1706753482,
+            "stat": 1,
+            "agt": "AzIAADT4gQEAAAVUKAz__w",
+            "agt_ver": "1.0.92p87",
+            "name": "星玉/星雾开关",
+            "lDbm": -21
+        },
+        {
+            "ver": "0.1.6.10",
+            "fullCls": "SL_SC_WA_V1",
+            "data": {
+                "WA": {
+                    "type": 79,
+                    "v": 0,
+                    "valts": 1706523098944,
+                    "val": 0
+                },
+                "V": {
+                    "type": 79,
+                    "v": 100,
+                    "valts": 1706722561476,
+                    "val": 160
+                }
+            },
+            "me": "3c95",
+            "devtype": "SL_SC_WA",
+            "lHeart": 1706752871,
+            "stat": 1,
+            "agt": "AzIAADT4gQEAAAVUKAz__w",
+            "agt_ver": "1.0.92p87",
+            "name": "水浸感应器",
+            "lDbm": -35
+        },
+        {
+            "ver": "0.0.0.0",
+            "fullCls": "SL_NATUREX_V1",
+            "me": "0001",
+            "lHeart": 1706753476,
+            "stat": 1,
+            "data": {
+                "P2": {
+                    "icon": "",
+                    "val": 509,
+                    "type": 9,
+                    "valts": 1706753542436
+                },
+                "P1": {
+                    "icon": "",
+                    "val": 224,
+                    "type": 9,
+                    "valts": 1706753476615
+                },
+                "P4": {
+                    "icon": "",
+                    "val": 3,
+                    "type": 95,
+                    "valts": 1706753542436
+                },
+                "P3": {
+                    "icon": "",
+                    "val": 486,
+                    "type": 95,
+                    "valts": 1706753542436
+                },
+                "P6": {
+                    "icon": "",
+                    "val": 3,
+                    "type": 95,
+                    "valts": 1706753542436
+                },
+                "P5": {
+                    "icon": "",
+                    "val": 3,
+                    "type": 95,
+                    "valts": 1706753542436
+                }
+            },
+            "agt": "AzgAAP3z4P7_27SE_____w",
+            "devtype": "SL_NATUREX",
+            "name": "NatureX",
+            "agt_ver": "1.0.92p92"
+        }
+    ],
+    "code": 0,
+    "id": 144
+}
