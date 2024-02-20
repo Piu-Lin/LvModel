@@ -1,6 +1,6 @@
 /** 
  * @param assignMessage 指定的json字符串
- * @description 发送消息至3dcat
+ * @description 发送消息至平行云
  * */
 export default function snedAssignMessage(assignMessage) {
     console.log("开始传输\n"+assignMessage)

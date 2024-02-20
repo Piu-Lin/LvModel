@@ -7,7 +7,6 @@ import Home from './pages/Home.vue'
   <div >
     <div id="container"></div>
     <Home/>
-    <!-- <Connectpxy/> -->
   </div>
 </template>
 
