@@ -55,7 +55,6 @@ const trigger = (meg) => {
         HereRoomValue.value = uemeg.stat
     }
 }
-
 onMounted(async () => {
     try { //获取设备信息
         const response = await fetch('https://metagis.cc:20256/prod-api/open/smartEquipment/getEpGetAll');
@@ -68,12 +67,15 @@ onMounted(async () => {
         // deviceInformation.value = jsonData
         isDataLoaded.value = true; // 数据加载完成
         console.log(deviceInformation.value);
+        
         extractedList = deviceInformation.value.map(item => ({
             name: item.name,
             fullCls: item.fullCls,
             stat: item.stat,
             data: item.data,
+            agtme:item.agt+item.me
         }))
+        console.log(extractedList)
     } catch (error) {
         console.error('Error fetching JSON data:', error);
     }
@@ -99,7 +101,6 @@ onMounted(async () => {
 // 根据数据判断发送所需状态
 function DetermineState(deviceData) {
     let statstring
-    //console.log(deviceData)
     if(deviceData && deviceData.stat==1){
         statstring="未启动"
     } else if (deviceData.stat==2){
@@ -143,13 +144,20 @@ function openSocket() {
     ws.onmessage = function (evt) {
         console.log('Received Message: ' + evt);
         let wsResponse = JSON.parse(evt.data)
-        console.log(wsResponse)
         if (wsResponse && wsResponse.message !== 'success') {
-            console.log(wsResponse.msg)
-            // console.log(wsResponse.msg.name);
             let DeviceStateData
-            if (wsResponse.msg.name) {
-                DeviceStateData = '{"eventname": "Event_Device_Status","name": "' + wsResponse.msg.name + '","stat": "' + extractedList.find(item => item.name === wsResponse.msg.name).stat + '"}'
+            console.log("msagtme=====>",wsResponse.msg.agt+wsResponse.msg.me)
+            let resOutName=extractedList.find(item => item.agtme == wsResponse.msg.agt+wsResponse.msg.me).name
+            console.log(resOutName)
+            let defalstat=1
+            switch(resOutName){
+                case "星玉开关":
+                default:
+                    defalstat=1
+            }
+
+            if (resOutName) {
+                DeviceStateData = '{"eventname": "Event_Device_Status","name": "' + resOutName + '","stat": "' + defalstat + '"}'
                 sendAssignMessage(DeviceStateData)
             }
         }
