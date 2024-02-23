@@ -193,19 +193,12 @@ function openSocket() {
     console.log(wsResponse);
     if (wsResponse && wsResponse.message !== "success") {
       let DeviceStateData;
-      console.log("msagtme=====>", wsResponse.msg.agt + wsResponse.msg.me);
+      //console.log("msagtme=====>", wsResponse.msg.agt + wsResponse.msg.me);
       let resOutName = extractedList.find(
         (item) => item.agtme == wsResponse.msg.agt + wsResponse.msg.me
       ).name;
-      console.log(resOutName);
+      console.log("resOutName==========>",resOutName);
       let defalstat = 1;
-      // switch(resOutName){
-      //     case "星玉开关":
-      //     default:
-      //         defalstat=1
-      // }
-      console.log("asdasdasdasd", wsResponse.msg);
-
       if (wsResponse.msg) {
         fetch("https://metagis.cc:20256/prod-api/open/smartEquipment/getStat", {
           method: "POST",
@@ -224,15 +217,33 @@ function openSocket() {
           })
           .then((data) => {
             // 处理返回的数据
-            console.log("Response data:", data);
             defalstat=data.data
+            let statstring;
+            console.log("defalstat=======>",defalstat)
+            if (defalstat && defalstat == 1) {
+                statstring = "未启动";
+            } else if (defalstat == 2) {
+                statstring = "运行中";
+            } else if (defalstat == 3) {
+                statstring = "告警";
+            } else {
+                statstring = "异常";
+            }
             if (resOutName) {
                 DeviceStateData =
+                // '{"eventname": "Event_Device_Status","name": "' +resOutName +'","stat": "' + defalstat + ',"statstring": "'+statstring+'","currentname":"'+statstring+'"}';
                 '{"eventname": "Event_Device_Status","name": "' +
                 resOutName +
                 '","stat": "' +
                 defalstat +
+                '","statstring": "' +
+                statstring +
+                '","currentname": "' +
+                resOutName +
+                '","image": "' +
+                1 +
                 '"}';
+                //console.log("需要发的数据：",DeviceStateData)
                 sendAssignMessage(DeviceStateData);
             }
           })
@@ -319,7 +330,9 @@ function openSocket() {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #5c5c5c;
+  /* background-color: #5c5c5c; */
+  background-color: #7f7f7f;
+
   color: #ffffff;
 }
 
