@@ -3,22 +3,24 @@
         <div class="HereRoom">
             {{ HereRoomValue }}
         </div>
-        <div @click="() => { The23DState = true; sendAssignMessage(SwitchTo3D);HereRoomValue='全屋' }"  class="BackToHome">
-            返回全屋视图
+        <div @click="() => { The23DState = true; sendAssignMessage(SwitchTo3D); HereRoomValue = '全屋' }" class="BackToHome">
+            <span v-if="HereRoomValue == '全屋'">返回默认视角</span>
+            <span v-if="HereRoomValue != '全屋'">返回全屋视图</span>
         </div>
         <div class="Switch23DBox">
             <!-- @click="()=>{The23DState=false}" -->
             <div v-if="!The23DState" class="The23DBoxChecked">
                 2D
             </div>
-            <div v-if="!The23DState" @click="() => { The23DState = true; sendAssignMessage(SwitchTo3D);HereRoomValue='全屋' }" class="The23DBox">
-                3D
+            <div v-if="!The23DState" @click="() => { The23DState = true; sendAssignMessage(SwitchTo3D); HereRoomValue = '全屋' }"
+                class="The23DBox">
+                <span class="sbpm">3D</span>
             </div>
             <div v-if="The23DState" @click="() => { The23DState = false; sendAssignMessage(SwitchTo2D) }" class="The23DBox">
                 2D
             </div>
             <div v-if="The23DState" class="The23DBoxChecked">
-                3D
+                <span class="sbpm">3D</span>
             </div>
         </div>
     </div>
@@ -49,46 +51,67 @@ const trigger = (meg) => {
     console.log("已接受的传出消息", uemeg)
     if (uemeg.eventname == "Event_Connected") {
         LoadComplete.value = true
-    } else if (uemeg.eventname == "Event_Switch_Room"){
-        HereRoomValue.value=uemeg.stat
+    } else if (uemeg.eventname == "Event_Switch_Room") {
+        HereRoomValue.value = uemeg.stat
     }
 }
-//sendAssignMessage('{"eventname": "Event_Device_Status","name": "多功能动态感应器","stat": "1"}')
 
 onMounted(async () => {
     try { //获取设备信息
-        const response = await fetch('http://218.0.59.244:10009/prod-api/open/smartEquipment/getEpGetAll');
+        const response = await fetch('https://metagis.cc:20256/prod-api/open/smartEquipment/getEpGetAll');
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         const jsonData = await response.json();
+        //console.log(jsonData.msg)
         deviceInformation.value = JSON.parse(jsonData.msg).message;
+        // deviceInformation.value = jsonData
         isDataLoaded.value = true; // 数据加载完成
-        //console.log(deviceInformation.value);
-        // if(extractedList.value){
-        //         extractedList = deviceInformation.value.map(item => ({
-        //         name: item.name,
-        //         stat: item.stat
-        // }))
-        // }
+        console.log(deviceInformation.value);
+        extractedList = deviceInformation.value.map(item => ({
+            name: item.name,
+            fullCls: item.fullCls,
+            stat: item.stat,
+            data: item.data,
+        }))
     } catch (error) {
         console.error('Error fetching JSON data:', error);
     }
-    console.log(extractedList)
+    setTimeout(() => {
+        extractedList.map(item => {
+        DetermineState(item)
+    })
+    }, 15000);
     try { //获取ws认证信息
-        const response = await fetch('http://218.0.59.244:10009/prod-api/open/smartEquipment/getWebSocketSendMsg');
+        const response = await fetch('https://metagis.cc:20256/prod-api/open/smartEquipment/getWebSocketSendMsg');
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         const jsonData = await response.json();
         wsCertified.value = JSON.parse(jsonData.msg)
-        console.log(wsCertified.value)
+        // console.log(wsCertified.value)
     } catch (error) {
         console.error('Error fetching JSON data:', error);
     }
-
     openSocket();
 });
+
+// 根据数据判断发送所需状态
+function DetermineState(deviceData) {
+    let statstring
+    //console.log(deviceData)
+    if(deviceData && deviceData.stat==1){
+        statstring="未启动"
+    } else if (deviceData.stat==2){
+        statstring="运行中"
+    } else if (deviceData.stat==3){
+        statstring="告警"
+    } else {
+        statstring="异常"
+    }
+    let assignMessage = '{"eventname": "Event_Device_Status","name": "'+deviceData.name+'","stat": "'+deviceData.stat+'","statstring": "'+statstring+'","currentname": "'+deviceData.name+'","image": "'+deviceData.image+'"}'
+    sendAssignMessage(assignMessage)
+}
 
 function openSocket() {
     if (typeof WebSocket === 'undefined') {
@@ -120,14 +143,16 @@ function openSocket() {
     ws.onmessage = function (evt) {
         console.log('Received Message: ' + evt);
         let wsResponse = JSON.parse(evt.data)
-        // if (wsResponse && wsResponse.message !== 'success') {
-        //     console.log(wsResponse.msg)
-        //     // console.log(wsResponse.msg.name);
-        //     if (wsResponse.msg.name) {
-        //         let DeviceStateData = '{"eventname": "Event_Device_Status","name": "' + wsResponse.msg.name + '","stat": "' + extractedList.find(item => item.name === wsResponse.msg.name).stat + '"}'
-        //     }
-        //     // 在这里处理收到的消息，根据需要更新设备信息
-        // }
+        console.log(wsResponse)
+        if (wsResponse && wsResponse.message !== 'success') {
+            console.log(wsResponse.msg)
+            // console.log(wsResponse.msg.name);
+            let DeviceStateData
+            if (wsResponse.msg.name) {
+                DeviceStateData = '{"eventname": "Event_Device_Status","name": "' + wsResponse.msg.name + '","stat": "' + extractedList.find(item => item.name === wsResponse.msg.name).stat + '"}'
+                sendAssignMessage(DeviceStateData)
+            }
+        }
     };
 
     ws.onclose = function (evt) {
@@ -142,8 +167,8 @@ function openSocket() {
 <style scoped>
 .Switch23DBox {
     position: absolute;
-    width: 13vw;
-    height: 10vh;
+    width: 109px;
+    height: 32px;
     top: 0px;
     right: 0px;
     border-radius: 6px;
@@ -157,19 +182,19 @@ function openSocket() {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 5vw;
-    height: 8vh;
+    width: 54px;
+    height: 32px;
     border-radius: 6px;
-    color :#FFFFFF;
-;
+    color: #FFFFFF;
+    ;
 }
 
 .The23DBoxChecked {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 5vw;
-    height: 8vh;
+    width: 54px;
+    height: 32px;
     background-color: #312d2d;
     border-radius: 6px;
     color: #72EB13;
@@ -185,20 +210,37 @@ function openSocket() {
     display: flex;
     justify-content: center;
     align-items: center;
-    color:#FFFFFF;
+    color: #FFFFFF;
 }
 
 .BackToHome {
     position: absolute;
-    width: 13vw;
+    width: 15vw;
     height: 9vh;
     bottom: 0px;
     right: 0px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16.8px;
     border-radius: 6px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #5C5C5C;
     color: #ffffff;
+}
+
+
+@font-face {
+    font-family: 'myFont'; 
+    src: url('/assets/PingFang_Medium.otf'); 
+    font-weight: normal;
+    font-style: normal;
+  }
+
+html,body { font-family: myFont, sans-serif; }
+.sbpm{
+    font-weight: 500;
+    font-size: 16px;
 }
 </style>
