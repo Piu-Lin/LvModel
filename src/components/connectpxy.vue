@@ -5,7 +5,7 @@
 import { LarkSR } from "larksr_websdk";
 import {onMounted} from 'vue';
 
-const sdkid="51dfc5ae3eee4301b86a49515f9c3e92"
+const sdkid="69ab8e9895d845188426101ea8924623"
 // const sdkid="JJJJJJJSSS"
 
 const appid="1202276979286474752"

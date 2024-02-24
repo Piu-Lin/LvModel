@@ -111,10 +111,10 @@ onMounted(async () => {
   } catch (error) {
     console.error("Error fetching JSON data:", error);
   }
-  // // setTimeout(() => {
-  // //     extractedList.map(item => {
-  // //     DetermineState(item)
-  // // })
+  // setTimeout(() => {
+  //     extractedList.map(item => {
+  //     DetermineState(item)
+  // })
   // }, 15000);
   try {
     //获取ws认证信息
@@ -241,7 +241,7 @@ function openSocket() {
                 '","currentname": "' +
                 resOutName +
                 '","image": "' +
-                1 +
+                3 +
                 '"}';
                 //console.log("需要发的数据：",DeviceStateData)
                 sendAssignMessage(DeviceStateData);
