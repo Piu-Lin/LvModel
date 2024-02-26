@@ -47,7 +47,7 @@
       <div v-if="The23DState" class="The23DBoxChecked">
         <span class="sbpm">3D</span>
       </div>
-    </div>
+    </div>   
   </div>
   <Connectpxy @trigger="trigger" />
   <div v-if="LoadComplete"></div>
@@ -190,15 +190,15 @@ function openSocket() {
   ws.onmessage = function (evt) {
     console.log("Received Message: " + evt);
     let wsResponse = JSON.parse(evt.data);
-    console.log(wsResponse);
+    console.log("所接受到的单个消息为：",wsResponse);
     if (wsResponse && wsResponse.message !== "success") {
       let DeviceStateData;
       //console.log("msagtme=====>", wsResponse.msg.agt + wsResponse.msg.me);
       let resOutName = extractedList.find(
         (item) => item.agtme == wsResponse.msg.agt + wsResponse.msg.me
       ).name;
-      console.log("resOutName==========>",resOutName);
-      let defalstat = 1;
+      // console.log("resOutName==========>",resOutName);
+      let stateAndIMG;
       if (wsResponse.msg) {
         fetch("https://metagis.cc:20256/prod-api/open/smartEquipment/getStat", {
           method: "POST",
@@ -217,31 +217,31 @@ function openSocket() {
           })
           .then((data) => {
             // 处理返回的数据
-            defalstat=data.data
+            stateAndIMG=data.data
             let statstring;
-            console.log("defalstat=======>",defalstat)
-            if (defalstat && defalstat == 1) {
+            console.log("查询后对应的名称为：",resOutName,"\n后端给出的状态以及图片id为：",stateAndIMG)
+            if (stateAndIMG && stateAndIMG.stat == 1) {
                 statstring = "未启动";
-            } else if (defalstat == 2) {
+            } else if (stateAndIMG.stat == 2) {
                 statstring = "运行中";
-            } else if (defalstat == 3) {
+            } else if (stateAndIMG.stat == 3) {
                 statstring = "告警";
             } else {
                 statstring = "异常";
             }
-            if (resOutName) {
+            if (resOutName && stateAndIMG.stat!="-1") {
                 DeviceStateData =
                 // '{"eventname": "Event_Device_Status","name": "' +resOutName +'","stat": "' + defalstat + ',"statstring": "'+statstring+'","currentname":"'+statstring+'"}';
                 '{"eventname": "Event_Device_Status","name": "' +
                 resOutName +
                 '","stat": "' +
-                defalstat +
+                stateAndIMG.stat +
                 '","statstring": "' +
                 statstring +
                 '","currentname": "' +
                 resOutName +
                 '","image": "' +
-                3 +
+                stateAndIMG.image +
                 '"}';
                 //console.log("需要发的数据：",DeviceStateData)
                 sendAssignMessage(DeviceStateData);
