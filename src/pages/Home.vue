@@ -94,28 +94,29 @@ onMounted(async () => {
       throw new Error("Network response was not ok");
     }
     const jsonData = await response.json();
-    //console.log(jsonData.msg)
+    // console.log(jsonData.msg)
     deviceInformation.value = JSON.parse(jsonData.msg).message;
     // deviceInformation.value = jsonData
     isDataLoaded.value = true; // 数据加载完成
-    console.log(deviceInformation.value);
+    // console.log(deviceInformation.value);
 
     extractedList = deviceInformation.value.map((item) => ({
       name: item.name,
       fullCls: item.fullCls,
       stat: item.stat,
       data: item.data,
+      image:item.image,
       agtme: item.agt + item.me,
     }));
-    console.log(extractedList);
+    // console.log("eee=========>>>>",extractedList);
   } catch (error) {
     console.error("Error fetching JSON data:", error);
   }
-  // setTimeout(() => {
-  //     extractedList.map(item => {
-  //     DetermineState(item)
-  // })
-  // }, 15000);
+  setTimeout(() => {
+      extractedList.map(item => {
+      DetermineState(item)
+  })
+  }, 18000);
   try {
     //获取ws认证信息
     const response = await fetch(
@@ -193,11 +194,9 @@ function openSocket() {
     console.log("所接受到的单个消息为：",wsResponse);
     if (wsResponse && wsResponse.message !== "success") {
       let DeviceStateData;
-      //console.log("msagtme=====>", wsResponse.msg.agt + wsResponse.msg.me);
       let resOutName = extractedList.find(
         (item) => item.agtme == wsResponse.msg.agt + wsResponse.msg.me
       ).name;
-      // console.log("resOutName==========>",resOutName);
       let stateAndIMG;
       if (wsResponse.msg) {
         fetch("https://metagis.cc:20256/prod-api/open/smartEquipment/getStat", {
