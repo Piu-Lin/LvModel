@@ -6,6 +6,9 @@ import { LarkSR } from "larksr_websdk";
 import {onMounted} from 'vue';
 
 const sdkid="69ab8e9895d845188426101ea8924623"
+// const sdkid="c81f505a1c4e4fd18e456fbc380b7778"
+
+// c81f505a1c4e4fd18e456fbc380b7778
 // const sdkid="JJJJJJJSSS"
 
 const appid="1202276979286474752"

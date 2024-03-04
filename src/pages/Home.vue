@@ -102,13 +102,13 @@ onMounted(async () => {
 
     extractedList = deviceInformation.value.map((item) => ({
       name: item.name,
-      fullCls: item.fullCls,
+      // fullCls: item.fullCls,
       stat: item.stat,
-      data: item.data,
+      // data: item.data,
       image:item.image,
-      agtme: item.agt + item.me,
+      // agtme: item.agt + item.me,
     }));
-    // console.log("eee=========>>>>",extractedList);
+    console.log("eee=========>>>>",extractedList);
   } catch (error) {
     console.error("Error fetching JSON data:", error);
   }
@@ -139,6 +139,8 @@ function DetermineState(deviceData) {
   let statstring;
   if (deviceData && deviceData.stat == 1) {
     statstring = "未启动";
+    // statstring = "在线";
+
   } else if (deviceData.stat == 2) {
     statstring = "运行中";
   } else if (deviceData.stat == 3) {
@@ -158,6 +160,7 @@ function DetermineState(deviceData) {
     '","image": "' +
     deviceData.image +
     '"}';
+  
   sendAssignMessage(assignMessage);
 }
 
@@ -194,9 +197,9 @@ function openSocket() {
     console.log("所接受到的单个消息为：",wsResponse);
     if (wsResponse && wsResponse.message !== "success") {
       let DeviceStateData;
-      let resOutName = extractedList.find(
-        (item) => item.agtme == wsResponse.msg.agt + wsResponse.msg.me
-      ).name;
+      // let resOutName = extractedList.find(
+      //   (item) => item.agtme == wsResponse.msg.agt + wsResponse.msg.me
+      // ).name;
       let stateAndIMG;
       if (wsResponse.msg) {
         fetch("https://metagis.cc:20256/prod-api/open/smartEquipment/getStat", {
@@ -218,9 +221,11 @@ function openSocket() {
             // 处理返回的数据
             stateAndIMG=data.data
             let statstring;
-            console.log("查询后对应的名称为：",resOutName,"\n后端给出的状态以及图片id为：",stateAndIMG)
+            console.log(stateAndIMG)
+            // console.log("查询后对应的名称为：",resOutName,"\n后端给出的状态以及图片id为：",stateAndIMG)
             if (stateAndIMG && stateAndIMG.stat == 1) {
                 statstring = "未启动";
+                // statstring = "在线";
             } else if (stateAndIMG.stat == 2) {
                 statstring = "运行中";
             } else if (stateAndIMG.stat == 3) {
@@ -228,17 +233,17 @@ function openSocket() {
             } else {
                 statstring = "异常";
             }
-            if (resOutName && stateAndIMG.stat!="-1") {
+            if (stateAndIMG.stat!="-1") {
                 DeviceStateData =
                 // '{"eventname": "Event_Device_Status","name": "' +resOutName +'","stat": "' + defalstat + ',"statstring": "'+statstring+'","currentname":"'+statstring+'"}';
                 '{"eventname": "Event_Device_Status","name": "' +
-                resOutName +
+                stateAndIMG.name +
                 '","stat": "' +
                 stateAndIMG.stat +
                 '","statstring": "' +
                 statstring +
                 '","currentname": "' +
-                resOutName +
+                stateAndIMG.name +
                 '","image": "' +
                 stateAndIMG.image +
                 '"}';
@@ -305,7 +310,7 @@ function openSocket() {
 
 .HereRoom {
   position: absolute;
-  width: 8vw;
+  width: 14vw;
   height: 6vh;
   top: 0px;
   left: 0px;
