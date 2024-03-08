@@ -250,6 +250,32 @@ function openSocket() {
                 //console.log("需要发的数据：",DeviceStateData)
                 sendAssignMessage(DeviceStateData);
             }
+            if (stateAndIMG.stat2 && stateAndIMG.stat2 == 1) {
+                statstring = "未启动";
+                // statstring = "在线";
+            } else if (stateAndIMG.stat2 == 2) {
+                statstring = "运行中";
+            } else if (stateAndIMG.stat2 == 3) {
+                statstring = "告警";
+            } else {
+                statstring = "异常";
+            }
+            if(stateAndIMG.name2){
+              DeviceStateData =
+                '{"eventname": "Event_Device_Status","name": "' +
+                stateAndIMG.name2 +
+                '","stat": "' +
+                stateAndIMG.stat2 +
+                '","statstring": "' +
+                statstring +
+                '","currentname": "' +
+                stateAndIMG.name2 +
+                '","image": "' +
+                stateAndIMG.image2 +
+                '"}';
+                //console.log("需要发的数据：",DeviceStateData)
+                sendAssignMessage(DeviceStateData);
+            }
           })
           .catch((error) => {
             // 处理错误
