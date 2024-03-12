@@ -81,11 +81,17 @@ const trigger = (meg) => {
   if (uemeg.eventname == "Event_Connected") {
     LoadComplete.value = true;
   } else if (uemeg.eventname == "Event_Switch_Room") {
-
     HereRoomValue.value = uemeg.stat;
-    window.parent.postMessage(uemeg.stat, '*');
+    // window.parent.postMessage(uemeg.stat, '*');
   }
 };
+watch(HereRoomValue, (newValue) => {
+  const messageData = {
+    "roomChange":newValue,
+  };
+  console.log("监听到变化",messageData)
+  window.parent.postMessage(messageData, '*');
+});
 onMounted(async () => {
   try {
     //获取设备信息
