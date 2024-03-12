@@ -83,14 +83,14 @@ const trigger = (meg) => {
   } else if (uemeg.eventname == "Event_Switch_Room") {
 
     HereRoomValue.value = uemeg.stat;
-    // window.parent.postMessage(uemeg.stat, '*');
+    window.parent.postMessage(uemeg.stat, '*');
   }
 };
 onMounted(async () => {
   try {
     //获取设备信息
     const response = await fetch(
-      "https://metagis.cc:20256/prod-api/open/smartEquipment/getEpGetAll"
+      "https://metagis.cc:20256/prod-api/open/smartEquipment/getEpGetAll3"
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -122,7 +122,7 @@ onMounted(async () => {
   try {
     //获取ws认证信息
     const response = await fetch(
-      "https://metagis.cc:20256/prod-api/open/smartEquipment/getWebSocketSendMsg"
+      "https://metagis.cc:20256/prod-api/open/smartEquipment/getWebSocketSendMsg3"
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -204,7 +204,7 @@ function openSocket() {
       // ).name;
       let stateAndIMG;
       if (wsResponse.msg) {
-        fetch("https://metagis.cc:20256/prod-api/open/smartEquipment/getStat", {
+        fetch("https://metagis.cc:20256/prod-api/open/smartEquipment/getStat3", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
