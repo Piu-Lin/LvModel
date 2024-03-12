@@ -5,16 +5,15 @@
 import { LarkSR } from "larksr_websdk";
 import {onMounted} from 'vue';
 // const sdkid="69ab8e9895d845188426101ea8924623" //  云平台
-const sdkid="88f24368aae04417bb3c58d1741aeffb" //服务器
-// c81f505a1c4e4fd18e456fbc380b7778
+const sdkid="4aa090f01f5d430680a6268bdd49dff3" //服务器
 // const sdkid="JJJJJJJSSS"
-const appid="1215741834005839872"// 私有化部署sdk
+const appid="1215741834005839872"// 私有化部署appid
 // const appid="120226474752asdasd"
 const emit = defineEmits(["trigger"])
 onMounted(()=>{
   let larksr = new LarkSR({
     rootElement: document.getElementById('container'),
-    serverAddress: "172.16.104.107:8181",
+    serverAddress: "https://smarthome-model.gtdreamlife.com:18082/",
     authCode: sdkid,
     loadingBgUrl: 'https://www.metagis.cc:20241/loadingbg.png',
   });

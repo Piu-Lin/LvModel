@@ -81,7 +81,9 @@ const trigger = (meg) => {
   if (uemeg.eventname == "Event_Connected") {
     LoadComplete.value = true;
   } else if (uemeg.eventname == "Event_Switch_Room") {
+
     HereRoomValue.value = uemeg.stat;
+    // window.parent.postMessage(uemeg.stat, '*');
   }
 };
 onMounted(async () => {
@@ -116,7 +118,7 @@ onMounted(async () => {
       extractedList.map(item => {
       DetermineState(item)
   })
-  }, 18000);
+  }, 20000);
   try {
     //获取ws认证信息
     const response = await fetch(
