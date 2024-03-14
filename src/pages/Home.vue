@@ -90,7 +90,7 @@ onMounted(async () => {
   try {
     //获取设备信息
     const response = await fetch(
-      "https://metagis.cc:20256/prod-api/open/smartEquipment/getEpGetAll"
+      "https://metagis.cc:20256/prod-api/openSmart/LuckySmartEquipment/getEpGetAll  "
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -122,7 +122,7 @@ onMounted(async () => {
   try {
     //获取ws认证信息
     const response = await fetch(
-      "https://metagis.cc:20256/prod-api/open/smartEquipment/getWebSocketSendMsg"
+      "https://metagis.cc:20256/prod-api/openSmart/LuckySmartEquipment/getWebSocketSendMsg"
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -140,15 +140,24 @@ onMounted(async () => {
 function DetermineState(deviceData) {
   let statstring;
   if (deviceData && deviceData.stat == 1) {
-    statstring = "未启动";
-    // statstring = "在线";
-
+    // statstring = "未启动";
+    statstring = "在线";
   } else if (deviceData.stat == 2) {
     statstring = "运行中";
   } else if (deviceData.stat == 3) {
     statstring = "告警";
+  } else if (deviceData.stat == 4) {
+    statstring = "自动";
+  } else if (deviceData.stat == 5) {
+    statstring = "吹风";
+  } else if (deviceData.stat == 6) {
+    statstring = "制冷";
+  } else if (deviceData.stat == 7) {
+    statstring = "制热";
+  } else if (deviceData.stat == 8) {
+    statstring = "除湿";
   } else {
-    statstring = "异常";
+    statstring = "离线";
   }
   let assignMessage =
     '{"eventname": "Event_Device_Status","name": "' +
@@ -204,7 +213,7 @@ function openSocket() {
       // ).name;
       let stateAndIMG;
       if (wsResponse.msg) {
-        fetch("https://metagis.cc:20256/prod-api/open/smartEquipment/getStat", {
+        fetch("https://metagis.cc:20256/prod-api/openSmart/LuckySmartEquipment/getStat", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -226,14 +235,24 @@ function openSocket() {
             console.log(stateAndIMG)
             // console.log("查询后对应的名称为：",resOutName,"\n后端给出的状态以及图片id为：",stateAndIMG)
             if (stateAndIMG && stateAndIMG.stat == 1) {
-                statstring = "未启动";
-                // statstring = "在线";
+                // statstring = "未启动";
+                statstring = "在线";
             } else if (stateAndIMG.stat == 2) {
                 statstring = "运行中";
             } else if (stateAndIMG.stat == 3) {
                 statstring = "告警";
+            } else if (stateAndIMG.stat == 4) {
+                statstring = "自动";
+            } else if (stateAndIMG.stat == 5) {
+                statstring = "吹风";
+            } else if (stateAndIMG.stat == 6) {
+                statstring = "制冷";
+            } else if (stateAndIMG.stat == 7) {
+                statstring = "制热";
+            } else if (stateAndIMG.stat == 8) {
+                statstring = "除湿";
             } else {
-                statstring = "异常";
+                statstring = "离线";
             }
             if (stateAndIMG.stat!="-1") {
                 DeviceStateData =
@@ -253,14 +272,14 @@ function openSocket() {
                 sendAssignMessage(DeviceStateData);
             }
             if (stateAndIMG.stat2 && stateAndIMG.stat2 == 1) {
-                statstring = "未启动";
-                // statstring = "在线";
+                // statstring = "未启动";
+                statstring = "在线";
             } else if (stateAndIMG.stat2 == 2) {
                 statstring = "运行中";
             } else if (stateAndIMG.stat2 == 3) {
                 statstring = "告警";
             } else {
-                statstring = "异常";
+                statstring = "离线";
             }
             if(stateAndIMG.name2){
               DeviceStateData =
