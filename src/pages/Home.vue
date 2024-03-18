@@ -118,7 +118,7 @@ onMounted(async () => {
       extractedList.map(item => {
       DetermineState(item)
   })
-  }, 20000);
+  }, 5000);
   try {
     //获取ws认证信息
     const response = await fetch(
