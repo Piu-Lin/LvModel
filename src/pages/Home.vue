@@ -62,7 +62,29 @@ const wsCertified = ref([]);
 const isDataLoaded = ref(false);
 const websc = ref();
 let The23DState = ref(true); // 2D3D的显示状态
-
+const defalutOnline = [
+  "智能网关",
+  "客厅恒压驱动电源",
+  "客厅调光调色智控器",
+  "餐厅净化",
+  "客厅净化",
+  "客厅装饰灯",
+  "sonos音箱",
+  "餐厅灯",
+  "客厅环境传感器",
+  "客厅智能音箱",
+  "客卧净化",
+  "客卧环境传感器",
+  "次卧净化",
+  "次卧环境传感器",
+  "主卧恒压电源",
+  "主卧调色智控器",
+  "次卧净化",
+  "书房净化",
+  "书房门口开关",
+  "阳台开关",
+  "主卧温控面板",
+]
 const SwitchTo2D = '{"eventname": "Event_Switch_3D","stat": "0"}'; // 改为2d要发送的消息
 const SwitchTo3D = '{"eventname": "Event_Switch_3D","stat": "1"}'; // 改为3d要发送的消息
 
@@ -90,7 +112,7 @@ onMounted(async () => {
   try {
     //获取设备信息
     const response = await fetch(
-      "https://metagis.cc:20256/prod-api/openSmart/LuckySmartEquipment/getEpGetAll  "
+      "https://metagis.cc:20256/prod-api/openSmart/LuckySmartEquipment/getEpGetAll"
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -116,8 +138,25 @@ onMounted(async () => {
   }
   setTimeout(() => {
       extractedList.map(item => {
-      DetermineState(item)
-  })
+        DetermineState(item)
+      }) 
+      defalutOnline.map(item=>{
+        let assignMessage =
+        '{"eventname": "Event_Device_Status","name": "' +
+        item +
+        '","stat": "' +
+        1 +
+        '","statstring": "' +
+        "在线" +
+        '","currentname": "' +
+        item +
+        '","image": "' +
+        0 +
+        '"}';
+        // console.log("默认在线========>>>>>",assignMessage)
+        sendAssignMessage(assignMessage);
+
+      })
   }, 5000);
   try {
     //获取ws认证信息
