@@ -84,6 +84,11 @@ const defalutOnline = [
   "书房门口开关",
   "阳台开关",
   "主卧温控面板",
+  "门锁",
+  "主卧净化",
+  "主卧温控面板",
+  "阳台开关",
+  "玄关二联开关",
 ]
 const SwitchTo2D = '{"eventname": "Event_Switch_3D","stat": "0"}'; // 改为2d要发送的消息
 const SwitchTo3D = '{"eventname": "Event_Switch_3D","stat": "1"}'; // 改为3d要发送的消息
