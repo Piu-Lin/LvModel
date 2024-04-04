@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="HereRoom">
+    <div @click="()=>{sendAssignMessage(intoKCT)}" class="HereRoom">
       {{ HereRoomValue }}
     </div>
     <div
@@ -63,6 +63,8 @@ const isDataLoaded = ref(false);
 const websc = ref();
 let The23DState = ref(true); // 2D3D的显示状态
 
+const intoKCT= '{"eventname": "Event_Switch_Room","stat": "客餐厅"}'
+
 const SwitchTo2D = '{"eventname": "Event_Switch_3D","stat": "0"}'; // 改为2d要发送的消息
 const SwitchTo3D = '{"eventname": "Event_Switch_3D","stat": "1"}'; // 改为3d要发送的消息
 
@@ -90,7 +92,7 @@ onMounted(async () => {
   try {
     //获取设备信息
     const response = await fetch(
-      "https://metagis.cc:20256/prod-api/open/smartEquipment/getEpGetAll"
+      "https://metagis.cc:20256/prod-api/openProdSmart/westStationSmartEquipment/getEpGetAll"
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");
