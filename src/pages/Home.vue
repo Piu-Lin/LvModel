@@ -203,6 +203,10 @@ function DetermineState(deviceData) {
   } else {
     statstring = "离线";
   }
+  let currentname=deviceData.name
+    if (deviceData.name=="主卧空气"){
+      currentname='主卧空调'
+    }
   let assignMessage =
     '{"eventname": "Event_Device_Status","name": "' +
     deviceData.name +
@@ -211,7 +215,7 @@ function DetermineState(deviceData) {
     '","statstring": "' +
     statstring +
     '","currentname": "' +
-    deviceData.name +
+    currentname +
     '","image": "' +
     deviceData.image +
     '"}';
@@ -299,6 +303,10 @@ function openSocket() {
                 statstring = "离线";
             }
             if (stateAndIMG.stat!="-1") {
+                let currentname=stateAndIMG.name
+                if (stateAndIMG.name=="主卧空气"){
+                  currentname='主卧空调'
+                }
                 DeviceStateData =
                 // '{"eventname": "Event_Device_Status","name": "' +resOutName +'","stat": "' + defalstat + ',"statstring": "'+statstring+'","currentname":"'+statstring+'"}';
                 '{"eventname": "Event_Device_Status","name": "' +
@@ -308,7 +316,7 @@ function openSocket() {
                 '","statstring": "' +
                 statstring +
                 '","currentname": "' +
-                stateAndIMG.name +
+                currentname +
                 '","image": "' +
                 stateAndIMG.image +
                 '"}';
@@ -326,6 +334,10 @@ function openSocket() {
                 statstring = "离线";
             }
             if(stateAndIMG.name2){
+              let currentname=stateAndIMG.name2
+                if (stateAndIMG.name2=="主卧空气"){
+                  currentname='主卧空调'
+                }
               DeviceStateData =
                 '{"eventname": "Event_Device_Status","name": "' +
                 stateAndIMG.name2 +
@@ -334,7 +346,7 @@ function openSocket() {
                 '","statstring": "' +
                 statstring +
                 '","currentname": "' +
-                stateAndIMG.name2 +
+                currentname +
                 '","image": "' +
                 stateAndIMG.image2 +
                 '"}';
