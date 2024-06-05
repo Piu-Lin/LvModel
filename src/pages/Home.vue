@@ -124,7 +124,7 @@ onMounted(async () => {
   try {
     //获取ws认证信息
     const response = await fetch(
-      "https://metagis.cc:20256/prod-api/open/smartEquipment/getWebSocketSendMsg"
+      "https://metagis.cc:20256/prod-api/openProdSmart/westStationSmartEquipment/getWebSocketSendMsg"
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -206,7 +206,7 @@ function openSocket() {
       // ).name;
       let stateAndIMG;
       if (wsResponse.msg) {
-        fetch("https://metagis.cc:20256/prod-api/open/smartEquipment/getStat", {
+        fetch("https://metagis.cc:20256/prod-api/openProdSmart/westStationSmartEquipment/getStat", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
