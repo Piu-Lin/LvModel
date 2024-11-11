@@ -9,6 +9,7 @@
           The23DState = true;
           sendAssignMessage(SwitchTo3D);
           HereRoomValue = '全屋';
+          sendAssignMessage(sv)
         }
       "
       class="BackToHome"
@@ -67,6 +68,7 @@ const intoKCT= '{"eventname": "Event_Switch_Room","stat": "客餐厅"}'
 
 const SwitchTo2D = '{"eventname": "Event_Switch_3D","stat": "0"}'; // 改为2d要发送的消息
 const SwitchTo3D = '{"eventname": "Event_Switch_3D","stat": "1"}'; // 改为3d要发送的消息
+let sv='{"eventname": "Event_Switch_Level","stat": "0"}'
 
 const HereRoomValue = ref("全屋");
 let extractedList; //发送给像素流的初始状态数据
@@ -121,6 +123,7 @@ onMounted(async () => {
       DetermineState(item)
   })
   }, 5000);
+  
   try {
     //获取ws认证信息
     const response = await fetch(
